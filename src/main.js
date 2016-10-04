@@ -5,7 +5,7 @@ import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import 'assets/css/common.css';
 import 'mint-ui/lib/style.css';
-
+import resource from 'vue-resource'
 import Login from './components/login.vue'
 import Register from './components/register.vue'
 import Index from './components/Index.vue'
@@ -14,6 +14,7 @@ import  regSave from './components/regSave.vue'
 
 
 Vue.use(VueRouter);
+Vue.use(resource);
 Vue.use(MintUI);
 // routing
 var router = new VueRouter()
@@ -28,7 +29,8 @@ router.map({
   '/register': {
     component: Register
   },
-  '/Index': {
+  '/index/:phone': {
+    name: 'index',
     component: Index
   },
   '/regVerify': {
