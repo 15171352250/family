@@ -5,9 +5,11 @@
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>-->
     <!-- main view -->
-      <div class="index_title">
-        <mt-cell class="page-title" :value="selected" ></mt-cell>
-      </div>
+    <mt-header :title="selected">
+      <mt-button v-link="'/'" slot="left"></mt-button>
+      <mt-button slot="right"></mt-button>
+    </mt-header>
+
 
     <mt-tabbar :selected.sync="selected">
       <mt-tab-item id="消息">

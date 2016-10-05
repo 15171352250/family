@@ -1,25 +1,19 @@
 <template>
   <div id="message">
 
+
     <div class="m_search_outer"><input type="search" placeholder="搜索"></div>
     <div class="m_mag_cent">
-      <div class="m_mag_list">
-        <div class="m_img_cont"><img src="../../assets/img/lb1.png" alt=""></div>
-        <div class="m_news_cont">
-          <p><a>小明</a><span>13:00</span></p>
-          <p>你好！很高兴认识你你好！</p>
+
+      <li v-for="item in items" style="list-style-type: none">
+        <div class="m_mag_list">
+          <div class="m_img_cont"><img src="../../assets/img/lb1.png" alt=""></div>
+          <div class="m_news_cont">
+            <p><a>{{item.name}}</a><span>{{item.time}}</span></p>
+            <p>{{item.message}}</p>
+          </div>
         </div>
-
-      </div>
-
-      <div class="m_mag_list">
-        <div class="m_img_cont"><img src="../../assets/img/lb1.png" alt=""></div>
-        <div class="m_news_cont">
-          <p><a>小明</a><span>13:00</span></p>
-          <p>你好！很高兴认识你你好！</p>
-        </div>
-
-      </div>
+      </li>
     </div>
   </div>
 
@@ -107,7 +101,14 @@
   export default{
     data(){
       return{
-        tltle:'hello vue'
+        tltle:'hello vue',
+        items: [
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
+          { message: '今天你吃饭么？',time:"13:20",name:" 小白" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小绿" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小西" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小白" }
+        ]
       }
     },
     components:{

@@ -4,9 +4,9 @@
       <img src="../../src/assets/family.jpg" width="100%" height="100%">
     </div>
     <div class="reg">
-      <mt-field label="手机号" :value.sync="value1"></mt-field>
+      <mt-field label="手机号" :value.sync="value1"  @click="empty"></mt-field>
       <mt-field label="验证码" :value.sync="value2">
-        <input type="button" value="获取验证码" class="btnsend" @click="send">
+        <input type="button" value="获取验证码" class="btnsend" @click="send" >
       </mt-field>
 
       <div class="logon">
@@ -79,6 +79,12 @@
 
 
 
+      },
+      empty:function () {
+        if(this.value1=="请输入手机号码")
+        {
+          this.value1="";
+        }
       }
     }
   }
