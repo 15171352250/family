@@ -1,1 +1,25 @@
-*{margin: 0;padding: 0}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,a{padding:0;margin:0;}
+table {border-collapse: collapse;border-spacing:0;}
+del, ins {text-decoration:none;}
+fieldset, img {border:0;}
+body{-webkit-overflow-scrolling:touch}
+a{text-decoration: none}
+img{display: block}
+input,select{color:#333;}
+input,select,img{vertical-align:middle;}
+input,select{outline:none;}
+input{-webkit-appearance:none;}
+select{height:22px;line-height:18px;padding:2px;}
+ul,ol{list-style:none;}
+ul li{float: left;}
+h1, h2, h3, h4, h5, h6 {font-size:14px;font-weight:400;}
+address,cite,dfn,em,var{font-style:normal;}
+legend{display:none;}
+td{font-size:14px;line-height:140%;}
+label{margin:0 0 0 5px;cursor:pointer;}
+input::-moz-focus-inner,button::-moz-focus-inner{border:0;padding:0;}
+html {font-size: 20px;}
+@media only screen and (min-width: 400px) {html {font-size: 21.33333333px !important;}}
+@media only screen and (min-width: 414px) {html {font-size: 22.08px !important;}}
+@media only screen and (min-width: 480px) { html { font-size: 25.6px !important;}}
+body{background:rgba(235, 237, 240, 0.77)}
