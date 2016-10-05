@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="logo">
-      <img src="../../src/assets/family.jpg" width="100%" height="100%">
+      <img src="../../src/assets/family.png" width="90%" height="100%">
     </div>
     <div class="reg">
       <mt-field label="手机号" :value.sync="value1"  @click="empty"></mt-field>
@@ -92,7 +92,7 @@
 
 <style>
   .reg {
-    margin-top: 20%;
+    margin-top: 1%;
   }
 
   .logo {
