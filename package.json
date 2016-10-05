@@ -1,8 +1,8 @@
 {
-  "name": "mytest",
+  "name": "family",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "xuyue",
+  "description": "family",
+  "author": "family",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -10,8 +10,9 @@
     "test": ""
   },
   "dependencies": {
+    "babel-runtime": "^6.0.0",
     "vue": "^1.0.21",
-    "babel-runtime": "^6.0.0"
+    "vue-resource": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

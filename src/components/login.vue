@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div class="logo">
-      <img src="../../src/assets/family.png" width="90%" height="100%">
+      <img src="../../src/assets/family.png" width="100%" height="100%">
     </div>
     <div class="reg">
-      <mt-field label="手机号" :value.sync="value1"  @click="empty"></mt-field>
-      <mt-field label="验证码" :value.sync="value2">
+      <mt-field label="手机号" :value.sync="value1"  placeholder="请输入手机号" @click="empty"></mt-field>
+      <mt-field label="验证码" :value.sync="value2" placeholder="验证码">
         <input type="button" value="获取验证码" class="btnsend" @click="send" >
       </mt-field>
 
@@ -28,31 +28,29 @@
   export default {
     data() {
       return {
-        value1: "请输入手机号码",
-        value2: "验证码"
+        value1: "",
+        value2: ""
       }
     },
     methods: {
       send: function () {
         let phone = this.value1;
-        Indicator.open({
-          text: '发送中',
-          spinnerType: 'triple-bounce'
-        })
-        setTimeout(function() {
-          Indicator.close()
-        }, 300)
-        if (phone!="请输入手机号码" ){
+
+        let reg = /^1[34578]\d{9}$/;
+        if(reg.test(phone)){
+          Indicator.open({
+            text: '发送中',
+            spinnerType: 'triple-bounce'
+          })
           this.$http.post('http://121.42.146.108:19585/sendCaptcha', {"phone": phone}).then((response) => {
             console.log(response.data.captcha)
             this.value2=response.data.captcha
+            Indicator.close()
           }, (response) => {
             console.log(response)
           });
-        }
-        else
-        {
-          MessageBox('提示', '请输入手机号');
+        }else{
+          MessageBox('提示', '请输入正确的手机号');
         }
       },
       login: function () {
