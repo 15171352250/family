@@ -1,7 +1,5 @@
 <template>
   <div id="message">
-
-
     <div class="m_search_outer"><input type="search" placeholder="搜索"></div>
     <div class="m_mag_cent">
 

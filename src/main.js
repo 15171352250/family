@@ -4,7 +4,6 @@ import VueRouter from 'vue-router';
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import 'assets/css/common.css';
-import 'mint-ui/lib/style.css';
 import resource from 'vue-resource'
 import Login from './components/login.vue'
 import Register from './components/register.vue'

@@ -4,9 +4,9 @@
       <img src="../../src/assets/family.png" width="100%" height="100%">
     </div>
     <div class="reg">
-      <mt-field label="手机号" :value.sync="value1"  placeholder="请输入手机号" @click="empty"></mt-field>
+      <mt-field label="手机号" :value.sync="value1" placeholder="请输入手机号" @click="empty"></mt-field>
       <mt-field label="验证码" :value.sync="value2" placeholder="验证码">
-        <input type="button" value="获取验证码" class="btnsend" @click="send" >
+        <input type="button" value="获取验证码" :status.sync="value3" class="btnsend" @click="send">
       </mt-field>
 
       <div class="logon">
@@ -29,13 +29,14 @@
     data() {
       return {
         value1: "",
-        value2: ""
+        value2: "",
+        value3:"IVACTIVE"
       }
     },
     methods: {
       send: function () {
+        this.value3='ACTIVE';
         let phone = this.value1;
-
         let reg = /^1[34578]\d{9}$/;
         if(reg.test(phone)){
           Indicator.open({
@@ -54,8 +55,9 @@
         }
       },
       login: function () {
-        let phone = this.value1;
-        if (phone!="请输入手机号码" )
+          let phone = this.value1;
+          let captcha = this.value2;
+        if (phone&&captcha&&this.value3=="ACTIVE")
         {
           Indicator.open({
             text: '登录中',
@@ -70,13 +72,18 @@
             console.log(response)
           });
         }
+        else if(phone)
+        {
+          MessageBox('提示', '请获取验证码');
+        }
+        else if(status=="IVACTIVE")
+        {
+          MessageBox('提示', '请获取验证码');
+        }
         else
         {
-          MessageBox('提示', '请输入手机号');
+           MessageBox('提示', '请输入手机号');
         }
-
-
-
       },
       empty:function () {
         if(this.value1=="请输入手机号码")
@@ -92,33 +99,32 @@
   .reg {
     margin-top: 1%;
   }
-
+  
   .logo {
     text-align: center;
   }
-
+  
   .newreg {
     text-align: center;
     margin-top: 15%;
   }
-
+  
   .newreg a {
-
     text-decoration: none;
     color: darkorange;
   }
-
+  
   .logon {
     margin-top: 5%;
   }
-
+  
   .btnsend {
     background: white;
     border: solid 1px darkorange;
     color: darkorange;
     border-radius: 5px
   }
-
+  
   input:focus {
     outline: none;
   }
