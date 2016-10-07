@@ -10,6 +10,7 @@ import Register from './components/register.vue'
 import Index from './components/Index.vue'
 import  regVerify from './components/regVerify.vue'
 import  regSave from './components/regSave.vue'
+import  welcome from './components/welcome.vue'
 
 
 Vue.use(VueRouter);
@@ -20,9 +21,10 @@ var router = new VueRouter()
 
 router.map({
   '/':{
-    component: Login
+    component: welcome
   },
   '/login': {
+    name: 'login',
     component: Login
   },
   '/register': {

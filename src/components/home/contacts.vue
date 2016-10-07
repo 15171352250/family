@@ -1,7 +1,5 @@
 <template>
-  <div id="message">
-
-
+  <div id="contacts" class="m_contacts">
     <div class="m_search_outer"><input type="search" placeholder="搜索" v-model = "searchKeyword"></div>
     <div class="m_mag_cent">
       <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded">
@@ -12,7 +10,7 @@
             <p>{{item.phoneNum}}</p>
           </div>
         </div>
-       </mt-loadmore>
+      </mt-loadmore>
     </div>
     <div class="m_right_bar" :class="{changebg:showNext}" @touchstart="changBg" @touchend="recoveryBg">
       <a href="A">A</a>
@@ -68,7 +66,7 @@
           { phoneNum: '13047167018',name:"小绿" },
           { phoneNum: '13047167018',name:"小西" },
           { phoneNum: '13047167018',name:"小红" }
-         
+
         ],
         showNext:'',
         topDistance:100,
@@ -76,36 +74,36 @@
       }
     },
     methods:{
-        changBg:function(e){
-           e.stopPropagation()
-           this.showNext = true;
-        },
-        recoveryBg:function(){
-          this.showNext = false;
-        },
-        loadTop:function(id){
-          let me = this
-          console.log(id)
-          console.log('loadTop')
-          setTimeout(()=>{
-            this.$broadcast('onTopLoaded', id);
-          },2000)
-          
-         
-        },
-        loadBottom:function(id){
-          
-          setTimeout(()=>{
-            //this.allLoaded = true;// 若数据已全部获取完毕
-            this.$broadcast('onBottomLoaded', id);
-          },2000)
-        }
+      changBg:function(e){
+        e.stopPropagation()
+        this.showNext = true;
+      },
+      recoveryBg:function(){
+        this.showNext = false;
+      },
+      loadTop:function(id){
+        let me = this
+        console.log(id)
+        console.log('loadTop')
+        setTimeout(()=>{
+          this.$broadcast('onTopLoaded', id);
+      },2000)
+
+
+      },
+      loadBottom:function(id){
+
+        setTimeout(()=>{
+          //this.allLoaded = true;// 若数据已全部获取完毕
+          this.$broadcast('onBottomLoaded', id);
+      },2000)
+      }
     },
     ready(){
       this.$watch('searchKeyword',(res)=>{
         console.log(this.searchKeyword)
-        console.log(this.items[0].name)
-      })
+      console.log(this.items[0].name)
+    })
     },
     components:{
 
@@ -115,9 +113,12 @@
     console.log(id);
   }
   function onBottomLoaded(id){
-     console.log(id);
+    console.log(id);
   }
 </script>
+<style>
+  .mint-tab-container{position: absolute;width: 100%;height: calc(100%-50px);top:40px;bottom: 50px;overflow: auto;}
+</style>
 <style scoped>
   .mint-tabbar{
     position: fixed;
@@ -129,7 +130,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    /*word-break: break-all; 
+    /*word-break: break-all;
     word-wrap:break-word;*/
     text-align:center;
     display: -webkit-flex;
@@ -144,7 +145,7 @@
     background:none;
   }
   .changebg{
-     background:rgba(0,0,0,0.5)
+    background:rgba(0,0,0,0.5)
   }
   /*.m_right_bar:hover{
     background:rgba(0,0,0,0.5)
@@ -155,7 +156,7 @@
     margin:0;
     font-size:.7rem;
   }
-  #message{background:#fff;}
+  #contacts{background:#fff;}
   .mint-header{
     height:50px;
     color:#000000;

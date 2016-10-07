@@ -66,6 +66,7 @@
           this.$http.post('http://121.42.146.108:19585/register', {"phone": phone}).then((response) => {
             let  phone=response.data.users.phone;
             this.$route.router.go({name:'index',params:{phone:phone}})
+            localStorage.setItem('phone', phone);
             Indicator.close()
             console.log(response.data.users)
           }, (response) => {
@@ -99,32 +100,32 @@
   .reg {
     margin-top: 1%;
   }
-  
+
   .logo {
     text-align: center;
   }
-  
+
   .newreg {
     text-align: center;
     margin-top: 15%;
   }
-  
+
   .newreg a {
     text-decoration: none;
     color: darkorange;
   }
-  
+
   .logon {
     margin-top: 5%;
   }
-  
+
   .btnsend {
     background: white;
     border: solid 1px darkorange;
     color: darkorange;
     border-radius: 5px
   }
-  
+
   input:focus {
     outline: none;
   }

@@ -3,7 +3,7 @@
 
 
       <mt-header title="注册">
-        <mt-button v-link="{path:'/register'}" icon="back" slot="left"></mt-button>
+        <mt-button v-link="{path:'/register'}"  slot="left">返回</mt-button>
       </mt-header>
 
       <div class="VerifyCaptcha">

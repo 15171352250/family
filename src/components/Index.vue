@@ -24,7 +24,7 @@
     </mt-tab-container>
     </div>
 
-    
+
   <mt-tabbar :selected.sync="selected">
     <mt-tab-item id="消息">
       <img slot="icon" src="../assets/img/mess.svg">
@@ -56,6 +56,7 @@
   import find from '../components/home/find'
   import message from '../components/home/message'
   import my from '../components/home/my'
+  import { MessageBox } from 'mint-ui';
   export default {
     data() {
       return {
@@ -78,8 +79,12 @@
       my
     },
     ready: function () {
+      console.log(localStorage.getItem('phone'))
+      if (!localStorage.getItem('phone'))
+      {
+        this.$route.router.go({name:'login'})
+      }
       this.phone = this.$route.params.phone
-
     },
     methods: {
       loadTop(id) {

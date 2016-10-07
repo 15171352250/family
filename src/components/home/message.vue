@@ -1,22 +1,122 @@
 <template>
-  <div id="message">
-    <div class="m_search_outer"><input type="search" placeholder="搜索"></div>
+  <div id="message" class="m_message">
+    <div class="m_search_outer"><input type="search" placeholder="搜索" v-model = "searchKeyword"></div>
     <div class="m_mag_cent">
-
-      <li v-for="item in items" style="list-style-type: none">
-        <div class="m_mag_list">
+      <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded">
+        <div class="m_mag_list" v-for="item in items"  :id="$index">
           <div class="m_img_cont"><img src="../../assets/img/lb1.png" alt=""></div>
           <div class="m_news_cont">
             <p><a>{{item.name}}</a><span>{{item.time}}</span></p>
             <p>{{item.message}}</p>
           </div>
         </div>
-      </li>
+      </mt-loadmore>
     </div>
   </div>
 
 </template>
+<script>
+  export default{
+    data(){
+      return{
+        tltle:'hello vue',
+        items: [
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
+          { message: '今天你吃饭么？',time:"13:20",name:"小红" }
+        ],
+        showNext:'',
+        topDistance:100,
+        allLoaded:false
+      }
+    },
+    methods:{
+      changBg:function(e){
+        e.stopPropagation()
+        this.showNext = true;
+      },
+      recoveryBg:function(){
+        this.showNext = false;
+      },
+      loadTop:function(id){
+        let me = this
+        console.log(id)
+        console.log('loadTop')
+        setTimeout(()=>{
+          this.$broadcast('onTopLoaded', id);
+      },2000)
+
+
+      },
+      loadBottom:function(id){
+
+        setTimeout(()=>{
+          //this.allLoaded = true;// 若数据已全部获取完毕
+          this.$broadcast('onBottomLoaded', id);
+      },2000)
+      }
+    },
+    ready(){
+      this.$watch('searchKeyword',(res)=>{
+        console.log(this.searchKeyword)
+      console.log(this.items[0].name)
+    })
+    },
+    components:{
+
+    }
+  }
+  function onTopLoaded(id){
+    console.log(id);
+  }
+  function onBottomLoaded(id){
+    console.log(id);
+  }
+</script>
+<style>
+  .mint-tab-container{position: absolute;width: 100%;height: calc(100%-50px);top:40px;bottom: 50px;overflow: auto;}
+</style>
 <style scoped>
+  .mint-tabbar{
+    position: fixed;
+    z-index: 999;
+  }
+  .m_right_bar{
+    width: 20px;
+    height:100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    /*word-break: break-all;
+    word-wrap:break-word;*/
+    text-align:center;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    /*justify-content: center;*/
+    align-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    background:none;
+  }
+  .changebg{
+    background:rgba(0,0,0,0.5)
+  }
+  /*.m_right_bar:hover{
+    background:rgba(0,0,0,0.5)
+  }*/
+  .m_right_bar a{
+    width: 20px;
+    padding:0;
+    margin:0;
+    font-size:.7rem;
+  }
   #message{background:#fff;}
   .mint-header{
     height:50px;
@@ -43,7 +143,7 @@
     padding:0 2%;
   }
   .m_mag_list{
-    padding:10px 0;
+    padding:6px 0;
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
@@ -69,7 +169,7 @@
     display: -ms-flex;
     display: -o-flex;
     display: flex;
-    font-size:0.9rem;
+    font-size:0.8rem;
     padding:0.4rem 0 0.3rem 0;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -84,7 +184,7 @@
     font-size:0.6rem;
   }
   .m_news_cont p:nth-of-type(2){
-    font-size:0.7rem;
+    font-size:0.65rem;
     color:#c0c3c8;
     width: 100%;
     text-overflow:ellipsis;
@@ -95,22 +195,3 @@
     font-style: normal;
   }
 </style>
-<script>
-  export default{
-    data(){
-      return{
-        tltle:'hello vue',
-        items: [
-          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
-          { message: '今天你吃饭么？',time:"13:20",name:" 小白" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小绿" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小西" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小白" }
-        ]
-      }
-    },
-    components:{
-
-    }
-  }
-</script>
