@@ -50,10 +50,8 @@
           this.$broadcast('onTopLoaded', id);
       },2000)
 
-
       },
       loadBottom:function(id){
-
         setTimeout(()=>{
           //this.allLoaded = true;// 若数据已全部获取完毕
           this.$broadcast('onBottomLoaded', id);

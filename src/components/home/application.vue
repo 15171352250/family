@@ -1,33 +1,71 @@
 <template>
-  <mt-swipe :show-indicators="false">
-    <mt-swipe-item><img src="../../assets/family.png" style="width: 100%;height: 100%;">1</mt-swipe-item>
-    <mt-swipe-item><img src="../../assets/family.png" style="width: 100%;height: 100%;">2</mt-swipe-item>
-    <mt-swipe-item><img src="../../assets/family.png" style="width: 100%;height: 100%;">3</mt-swipe-item>
-  </mt-swipe>
-  <div class="app_index">
-    <a href="#">账本</a>
-    <a href="#">快递查询</a>
-    <a href="#">购票</a>
-    <a href="#">天气</a>
-    <a href="#">财务统计</a>
-    <a href="#">设置</a>
+
+  <div id="application" class="m_application">
+    <div class="m_mag_cent">
+      <mt-loadmore :top-method="loadTop" :bottom-all-loaded="allLoaded">
+        <mt-swipe :show-indicators="false">
+          <mt-swipe-item><img src="../../assets/family.png" style="width: 100%;height: 100%;">1</mt-swipe-item>
+          <mt-swipe-item><img src="../../assets/family.png" style="width: 100%;height: 100%;">2</mt-swipe-item>
+          <mt-swipe-item><img src="../../assets/family.png" style="width: 100%;height: 100%;">3</mt-swipe-item>
+        </mt-swipe>
+        <div class="app_index">
+          <a >账本</a>
+          <a >快递查询</a>
+          <a >购票</a>
+          <a >天气</a>
+          <a>财务统计</a>
+          <a>设置</a>
+        </div>
+      </mt-loadmore>
+    </div>
   </div>
+
 </template>
+<script>
+  export default{
+    data(){
+      return{
+        tltle:'hello vue',
+        items: [
+        ],
+        showNext:'',
+        topDistance:100,
+        allLoaded:false
+      }
+    },
+    methods:{
+      loadTop:function(id){
+        let me = this
+        console.log(id)
+        console.log('loadTop')
+        setTimeout(()=>{
+          this.$broadcast('onTopLoaded', id);
+      },1000)
+
+
+      }
+    },
+    ready(){
+      this.$watch('searchKeyword',(res)=>{
+        console.log(this.searchKeyword)
+      console.log(this.items[0].name)
+    })
+    },
+    components:{
+
+    }
+  }
+  function onTopLoaded(id){
+    console.log(id);
+  }
+</script>
 <style>
-  .swipe {
-    height: 200px;
-    color: #fff;
-    font-size: 30px;
-    text-align: center;
-
-  }
-
-  .swipe-item {
-    line-height: 200px;
-  }
-  * {
-    padding: 0;
-    margin: 0;
+  .mint-tab-container{position: absolute;width: 100%;height: calc(100%-50px);top:40px;bottom: 50px;overflow: auto;}
+</style>
+<style scoped>
+  .mint-loadmore
+  {
+    overflow: inherit;
   }
   .app_index {
     width: 100%;
@@ -51,13 +89,3 @@
     z-index: 2;
   }
 </style>
-<script>
-  export default{
-    data(){
-      return {
-        msg: 'hello vue'
-      }
-    },
-    components: {}
-  }
-</script>
