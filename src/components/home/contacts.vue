@@ -1,13 +1,14 @@
 <template>
   <div id="contacts" class="m_contacts">
-    <div class="m_search_outer"><input type="search" placeholder="搜索" v-model = "searchKeyword"></div>
+    <div class="m_search_outer"><input type="search" placeholder="搜索" v-model = "contacts"></div>
+
     <div class="m_mag_cent">
-      <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded">
+      <mt-loadmore :top-method="loadTop" :bottom-all-loaded="allLoaded">
         <div class="m_mag_list" v-for="item in items"  :id="$index">
           <div class="m_img_cont"><img src="../../assets/img/lb1.png" alt=""></div>
           <div class="m_news_cont">
-            <p><a>{{item.name}}</a></p>
-            <p>{{item.phoneNum}}</p>
+            <p><a>{{item.username}}</a></p>
+            <p>{{item.phone}}</p>
           </div>
         </div>
       </mt-loadmore>
@@ -49,28 +50,10 @@
       return{
         tltle:'hello vue',
         items: [
-          { phoneNum: '13047167018',name:"小红" },
-          { phoneNum: '13047167018',name:" 小白" },
-          { phoneNum: '13047167018',name:"小绿" },
-          { phoneNum: '13047167018',name:"小西" },
-          { phoneNum: '13047167018',name:"小红" },
-          { phoneNum: '13047167018',name:" 小白" },
-          { phoneNum: '13047167018',name:"小绿" },
-          { phoneNum: '13047167018',name:"小西" },
-          { phoneNum: '13047167018',name:"小红" },
-          { phoneNum: '13047167018',name:" 小白" },
-          { phoneNum: '13047167018',name:"小绿" },
-          { phoneNum: '13047167018',name:"小西" },
-          { phoneNum: '13047167018',name:"小红" },
-          { phoneNum: '13047167018',name:" 小白" },
-          { phoneNum: '13047167018',name:"小绿" },
-          { phoneNum: '13047167018',name:"小西" },
-          { phoneNum: '13047167018',name:"小红" }
-
         ],
         showNext:'',
-        topDistance:100,
-        allLoaded:false
+        topDistance:10,
+        allLoaded:true
       }
     },
     methods:{
@@ -90,19 +73,20 @@
       },2000)
 
 
-      },
-      loadBottom:function(id){
-
-        setTimeout(()=>{
-          //this.allLoaded = true;// 若数据已全部获取完毕
-          this.$broadcast('onBottomLoaded', id);
-      },2000)
       }
     },
     ready(){
-      this.$watch('searchKeyword',(res)=>{
-        console.log(this.searchKeyword)
-      console.log(this.items[0].name)
+      this.$http.post('http://121.42.146.108:19585/getContact', {}).then((response) => {
+      this.items=response.data.data
+    },
+      (response) => {
+        console.log(response)
+      })
+
+      console.log(11)
+      this.$watch('contacts',(res)=>{
+        console.log(this.contacts)
+      console.log(this.items[0].name);
     })
     },
     components:{
@@ -112,18 +96,11 @@
   function onTopLoaded(id){
     console.log(id);
   }
-  function onBottomLoaded(id){
-    console.log(id);
-  }
 </script>
 <style>
   .mint-tab-container{position: absolute;width: 100%;height: calc(100%-50px);top:40px;bottom: 50px;overflow: auto;}
 </style>
-<style scoped>
-  .mint-tabbar{
-    position: fixed;
-    z-index: 999;
-  }
+<style>
   .m_right_bar{
     width: 20px;
     height:100%;
