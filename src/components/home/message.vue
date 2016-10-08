@@ -22,12 +22,9 @@
         tltle:'hello vue',
         items: [
           { message: '今天你吃饭么？',time:"13:20",name:"小红" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小红" },
-          { message: '今天你吃饭么？',time:"13:20",name:"小红" }
+          { message: '今天你吃饭么？',time:"13:20",name:"大熊" },
+          { message: '今天你吃饭么？',time:"13:20",name:"路飞" },
+          { message: '今天你吃饭么？',time:"13:20",name:"娜美" }
         ],
         showNext:'',
         topDistance:100,
@@ -61,7 +58,6 @@
     ready(){
       this.$watch('searchKeyword',(res)=>{
         console.log(this.searchKeyword)
-      console.log(this.items[0].name)
     })
     },
     components:{
