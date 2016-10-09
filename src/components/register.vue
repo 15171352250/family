@@ -1,7 +1,7 @@
 <template>
   <div id="register">
     <mt-header title="注册">
-      <mt-button v-link="{path:'/login'}" icon="back" slot="left"></mt-button>
+      <mt-button v-link="{path:'/login'}" slot="left"> 返回</mt-button>
     </mt-header>
 
     <div class="getCaptcha">
